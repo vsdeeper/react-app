@@ -2,39 +2,67 @@ import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import {useTheme} from '@react-navigation/native';
 import {Text, PlatformPressable} from '@react-navigation/elements';
+import type {BottomTabBarProps} from '@react-navigation/bottom-tabs';
 
-export default function TabBar({
-  state,
-  navigation,
-}: {
-  state: {
-    routes?: {name: string; key: string; params?: Record<string, any>}[];
-    index?: number;
-  };
-  navigation: Record<string, any>;
-}): React.JSX.Element {
+export default function TabBar(props: BottomTabBarProps): React.JSX.Element {
+  const {state, navigation, descriptors} = props;
   const {colors} = useTheme();
+
   return (
     <View style={styles.tabBar}>
       {state.routes?.map((route, index) => {
+        const {options} = descriptors[route.key];
+        const label =
+          options.tabBarLabel !== undefined
+            ? options.tabBarLabel
+            : options.title !== undefined
+            ? options.title
+            : route.name;
+
         const isFocused = state.index === index;
 
         const onPress = () => {
           if (!isFocused) {
-            navigation.navigate(route.key, route.params);
+            const event = navigation.emit({
+              type: 'tabPress',
+              target: route.key,
+              canPreventDefault: true,
+            });
+
+            if (!event.defaultPrevented) {
+              navigation.navigate(route.name, route.params);
+            }
           }
         };
 
         return (
-          <PlatformPressable
-            key={route.key}
-            accessibilityState={isFocused ? {selected: true} : {}}
-            onPress={onPress}
-            style={styles.tabBtn}>
-            <Text style={{color: isFocused ? colors.primary : colors.text}}>
-              {route.name}
-            </Text>
-          </PlatformPressable>
+          <View key={route.key} style={styles.tabBtn}>
+            <PlatformPressable
+              accessibilityState={isFocused ? {selected: true} : {}}
+              pressColor="rgba(0, 0, 0, 0.1)"
+              onPress={onPress}
+              style={styles.pressable}>
+              {options.tabBarIcon?.({
+                focused: isFocused,
+                color: isFocused ? colors.primary : colors.text,
+                size: 22,
+              })}
+              <Text
+                style={{
+                  ...styles.label,
+                  color: isFocused ? colors.primary : colors.text,
+                }}>
+                {typeof label === 'string'
+                  ? label
+                  : label({
+                      focused: isFocused,
+                      color: colors.text,
+                      position: 'below-icon',
+                      children: '',
+                    })}
+              </Text>
+            </PlatformPressable>
+          </View>
         );
       })}
     </View>
@@ -44,8 +72,20 @@ export default function TabBar({
 const styles = StyleSheet.create({
   tabBar: {
     flexDirection: 'row',
+    height: 48,
   },
   tabBtn: {
     flex: 1,
+    borderRadius: 100,
+    overflow: 'hidden',
+  },
+  pressable: {
+    display: 'flex',
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  label: {
+    fontSize: 10,
   },
 });

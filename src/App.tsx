@@ -101,7 +101,7 @@ const RootStack = createNativeStackNavigator({
     'Components/Button': {
       screen: Button,
       options: {
-        headerTitle: '加载提示',
+        headerTitle: '按钮',
       },
     },
   },

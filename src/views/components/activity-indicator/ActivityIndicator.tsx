@@ -1,9 +1,10 @@
 import React from 'react';
 import {ActivityIndicator, StyleSheet, View} from 'react-native';
+import base from '../../../styles/base';
 
 export default function _ActivityIndicator(): React.JSX.Element {
   return (
-    <View style={[styles.container, styles.horizontal]}>
+    <View style={[base.container, styles.container, styles.horizontal]}>
       <ActivityIndicator />
       <ActivityIndicator size="large" />
       <ActivityIndicator size="small" color="#0000ff" />
@@ -14,7 +15,6 @@ export default function _ActivityIndicator(): React.JSX.Element {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     justifyContent: 'center',
   },
   horizontal: {

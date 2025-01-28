@@ -45,7 +45,7 @@ export default function TabBar(props: BottomTabBarProps): React.JSX.Element {
               {options.tabBarIcon?.({
                 focused: isFocused,
                 color: isFocused ? colors.primary : colors.text,
-                size: 22,
+                size: 20,
               })}
               <Text
                 style={{
@@ -73,6 +73,7 @@ const styles = StyleSheet.create({
   tabBar: {
     flexDirection: 'row',
     height: 48,
+    backgroundColor: '#fff',
   },
   tabBtn: {
     flex: 1,
@@ -86,6 +87,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   label: {
-    fontSize: 10,
+    fontSize: 12,
+    marginTop: 2,
   },
 });

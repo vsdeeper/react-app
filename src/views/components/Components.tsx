@@ -9,6 +9,7 @@ import {
 import {ArrowRight} from '../../components/icons';
 import {useNavigation, useTheme} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import base from '../../styles/base';
 
 const DATA = [
   {
@@ -31,7 +32,7 @@ export default function Components(): React.JSX.Element {
     useNavigation<NativeStackNavigationProp<Record<string, any>>>();
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[base.container, styles.container]}>
       <FlatList
         data={DATA}
         renderItem={({item}) => (
@@ -50,8 +51,6 @@ export default function Components(): React.JSX.Element {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#f0f0f0',
     paddingTop: 16,
   },
   item: {

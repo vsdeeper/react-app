@@ -3,12 +3,13 @@ import {useNavigation} from '@react-navigation/native';
 import {StyleSheet, View} from 'react-native';
 import {Button} from '@react-navigation/elements';
 import {type StackNavigation} from '../../App';
+import base from '../../styles/base';
 
 export default function Home(): React.JSX.Element {
   const navigation = useNavigation<StackNavigation>();
 
   return (
-    <View style={styles.container}>
+    <View style={[base.container, styles.container]}>
       <Button
         style={styles.btn}
         variant="filled"
@@ -27,10 +28,8 @@ export default function Home(): React.JSX.Element {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#f0f0f0',
   },
   btn: {
     margin: 6,

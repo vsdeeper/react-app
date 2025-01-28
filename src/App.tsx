@@ -19,6 +19,7 @@ import Button from './views/components/button/Button';
 import Api from './views/api/Api';
 import {ApiIcon, ComponentsIcon, HomeIcon} from './components/icons';
 import {StatusBar} from 'react-native';
+import {screenBackgroundColor} from './styles/base';
 
 export type RootStackParamList = {
   Home: undefined;
@@ -82,7 +83,7 @@ const RootStack = createNativeStackNavigator({
   screenOptions: {
     animation: 'ios_from_right',
     headerStyle: {
-      backgroundColor: '#f0f0f0',
+      backgroundColor: screenBackgroundColor,
     },
   },
   screens: {
@@ -112,7 +113,10 @@ const Navigation = createStaticNavigation(RootStack);
 export default function App(): React.JSX.Element {
   return (
     <>
-      <StatusBar backgroundColor="#f0f0f0" barStyle="dark-content" />
+      <StatusBar
+        backgroundColor={screenBackgroundColor}
+        barStyle="dark-content"
+      />
       <SafeAreaProvider>
         <Navigation />
       </SafeAreaProvider>

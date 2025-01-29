@@ -6,13 +6,16 @@ export default function _Button(): React.JSX.Element {
   return (
     <View style={[base.container, styles.container]}>
       <View style={styles.button}>
-        <Button title="点我" onPress={() => Alert.alert('抓住你了~')} />
+        <Button
+          title="点我"
+          onPress={() => Alert.alert('提示', '抓住你了~', [{text: '确定'}])}
+        />
       </View>
       <View style={styles.button}>
         <Button
           title="点我"
           color="#f194ff"
-          onPress={() => Alert.alert('抓住你了~')}
+          onPress={() => Alert.alert('提示', '抓住你了~', [{text: '确定'}])}
         />
       </View>
       <View style={styles.button}>

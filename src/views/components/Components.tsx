@@ -6,9 +6,9 @@ import {
   StyleSheet,
   Text,
 } from 'react-native';
-import {ArrowRight} from '../../components/icons';
 import {useNavigation, useTheme} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {ArrowRight} from '../../components/icons';
 import base from '../../styles/base';
 
 const DATA = [
@@ -21,7 +21,7 @@ const DATA = [
     title: '按钮',
   },
   {
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
+    id: 'Components/Modal',
     title: '弹窗',
   },
 ];

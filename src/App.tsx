@@ -4,6 +4,7 @@
  * @format
  */
 import React from 'react';
+import {StatusBar} from 'react-native';
 import {createStaticNavigation} from '@react-navigation/native';
 import {
   createNativeStackNavigator,
@@ -16,9 +17,10 @@ import Home from './views/home/Home';
 import Components from './views/components/Components';
 import ActivityIndicator from './views/components/activity-indicator/ActivityIndicator';
 import Button from './views/components/button/Button';
+import Modal from './views/components/modal/Modal';
 import Api from './views/api/Api';
+import Camera from './views/api/camera/Camera';
 import {ApiIcon, ComponentsIcon, HomeIcon} from './components/icons';
-import {StatusBar} from 'react-native';
 import {screenBackgroundColor} from './styles/base';
 
 export type RootStackParamList = {
@@ -103,6 +105,18 @@ const RootStack = createNativeStackNavigator({
       screen: Button,
       options: {
         headerTitle: '按钮',
+      },
+    },
+    'Components/Modal': {
+      screen: Modal,
+      options: {
+        headerTitle: '弹窗',
+      },
+    },
+    'Api/Camera': {
+      screen: Camera,
+      options: {
+        headerTitle: '相机',
       },
     },
   },
